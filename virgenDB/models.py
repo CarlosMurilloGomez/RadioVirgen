@@ -18,7 +18,7 @@ class Autor(models.Model):
 
 class Plan(models.Model):
     nombre = models.CharField(max_length=100)
-    precio = models.IntegerField()
+    precio = models.DecimalField()
     class Meta:
         constraints = [
             models.CheckConstraint(check=models.Q(nombre__in=['Individual', 'Jubilado', 'Estudiante', 'Familiar']),  name="ch_plan_nombre")
