@@ -32,7 +32,7 @@ class Command(BaseCommand):
             )
             # asiganacion de autores a cada podcast
             authors = Autor.objects.filter(programa=podcast.programa)
-            podcast.autores.set(random.sample(list(authors), random.randint(1, 5)))
+            podcast.autores.set(random.sample(list(authors), random.randint(1, list(authors).__len__())))
         # creacion  familia
         Familia.objects.create(nombre='Familia 1')
         Familia.objects.create(nombre='Familia 2')
