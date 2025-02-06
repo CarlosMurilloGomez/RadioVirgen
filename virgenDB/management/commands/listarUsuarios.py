@@ -19,4 +19,3 @@ class Command(BaseCommand):
             self.stderr.write(self.style.ERROR(f'Error: {e}'))
 
 
-            random.choice(list(Plan.objects.all()))

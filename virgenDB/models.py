@@ -18,7 +18,7 @@ class Autor(models.Model):
 
 class Plan(models.Model):
     nombre = models.CharField(max_length=100)
-    precio = models.DecimalField()
+    precio = models.DecimalField(decimal_places=2, max_digits=5)
     class Meta:
         constraints = [
             models.CheckConstraint(check=models.Q(nombre__in=['Individual', 'Jubilado', 'Estudiante', 'Familiar']),  name="ch_plan_nombre")
@@ -52,8 +52,8 @@ class Familia(models.Model):
         return f'ID: {self.id.__str__()} - {self.nombre}'
 
 class Usuario(models.Model):
-    nick = models.CharField(unique=True)
-    nombre = models.CharField(max_length=20)
+    nick = models.CharField(unique=True, max_length=100)
+    nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=40)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=30)
