@@ -1,7 +1,7 @@
 import random
 from faker import Faker
 from django.core.management.base import BaseCommand
-from RadioVirgen.models import Autor, Programa, Podcast, Usuario, Reproducciones, Plan, Familia
+from virgenDB.models import Autor, Programa, Podcast, Usuario, Reproducciones, Plan, Familia
 
 class Command(BaseCommand):
     help = 'Carga datos iniciales en la base de datos'
@@ -62,6 +62,8 @@ class Command(BaseCommand):
                         break
                 if not hayFamiliaDisponible:
                     familia = Familia.objects.create(nombre=f'Familia de {nick}')
+            else:
+                familia = None
             usuario = Usuario.objects.create(
                 nick=nick,
                 nombre=fake.first_name(),
