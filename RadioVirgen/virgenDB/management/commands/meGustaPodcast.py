@@ -9,13 +9,13 @@ class Command(BaseCommand):
         parser.add_argument(
             'nick',
             type=str,
-            help='Nick del usuario al que se le añadirá el "me gusta".'
+            help='Nick del usuario al que se le añadirá el "me gusta"'
         )
         #Parámetro opcional: id del podcast, para agregar el podcast al usuario
         parser.add_argument(
             '--podcast_id',
             type=int,
-            help='ID del podcast al que se le añadirá el "me gusta".'
+            help='ID del podcast al que se le añadirá el "me gusta"'
         )
 
     def handle(self, *args, **options):
@@ -25,7 +25,7 @@ class Command(BaseCommand):
         try:
             usuario = Usuario.objects.get(nick=nick)
         except Usuario.DoesNotExist:
-            raise CommandError(f'No se encontró el usuario con nick "{nick}".')
+            raise CommandError(f'No se encontró el usuario con nick "{nick}"')
 
         #Si se proporciona el id del podcast, se añade el "me gusta"
         if podcast_id is not None:
@@ -37,7 +37,7 @@ class Command(BaseCommand):
             #Añadimos el podcast a la relación many-to-many de "me gusta"
             usuario.me_gusta_podcast.add(podcast)
             self.stdout.write(self.style.SUCCESS(
-                f'Se ha añadido un "me gusta" al podcast "{podcast.nombre}" (ID: {podcast_id}) para el usuario "{nick}".'
+                f'Se ha añadido un "me gusta" al podcast "{podcast.nombre}" (ID: {podcast_id}) para el usuario "{nick}"'
             ))
 
         #Se listan todos los podcasts a los que el usuario ha dado "me gusta"
@@ -51,4 +51,4 @@ class Command(BaseCommand):
             for p in liked_podcasts:
                 self.stdout.write(f'ID: {p.id} - Nombre: {p.nombre}')
         else:
-            self.stdout.write(self.style.WARNING(f'El usuario "{nick}" no tiene podcasts marcados con "me gusta".'))
+            self.stdout.write(self.style.WARNING(f'El usuario "{nick}" no tiene podcasts marcados con "me gusta"'))
