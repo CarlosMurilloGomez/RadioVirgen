@@ -75,4 +75,13 @@ class Command(BaseCommand):
                 familia=familia
             )
 
+            # creacion de entre 20 y 70 reproducciones para cada usuario
+            for _ in range(random.randint(20, 70)):
+                podcast = random.choice(Podcast.objects.all())
+                Reproducciones.objects.create(
+                    idUsuario=usuario,
+                    idPodcast=podcast,
+                    numReproducciones=random.randint(1, 10)  # numero de reproducciones de cada podcast
+                )
+
         self.stdout.write(self.style.SUCCESS('exito al cargar datos iniciales en la base de datos'))
