@@ -19,7 +19,7 @@ class Command(BaseCommand):
         meses = options.get('meses')
         totalIngresos = 0
         if Usuario.objects.exists():
-            usuarios = Usuario.objects.All()
+            usuarios = Usuario.objects.all()
             for usuario in usuarios:
                 inicio = date.today() - timedelta(days=30*meses)
 
