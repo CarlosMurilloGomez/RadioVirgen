@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -57,6 +59,7 @@ class Usuario(models.Model):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=30)
     fecha_nacimiento = models.DateField()
+    fecha_de_alta = models.DateField()
     fecha_de_baja = models.DateField(null=True, blank=True)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     familia = models.ForeignKey(Familia, on_delete=models.CASCADE, null=True, blank=True)

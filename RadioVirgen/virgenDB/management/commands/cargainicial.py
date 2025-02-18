@@ -1,4 +1,6 @@
 import random
+from datetime import timedelta, datetime
+
 from faker import Faker
 from django.core.management.base import BaseCommand
 from virgenDB.models import Autor, Programa, Podcast, Usuario, Reproducciones, Plan, Familia
@@ -71,6 +73,7 @@ class Command(BaseCommand):
                 email=fake.email(),
                 password=fake.password(),
                 fecha_nacimiento=fake.date_of_birth(minimum_age=18, maximum_age=80),
+                fecha_de_alta=fake.date_between(start_date=datetime.today()-timedelta(days=365), end_date=datetime.today()),
                 plan=plan,
                 familia=familia
             )
